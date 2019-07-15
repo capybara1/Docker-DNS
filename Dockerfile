@@ -17,6 +17,7 @@ LABEL org.label-schema.schema-version="1.0" \
 RUN set -x; \
     apk --no-cache add bind
 VOLUME /etc/bind
-EXPOSE 53/udp
-ENTRYPOINT ["/usr/sbin/named", "-f", "-u", "named", "-c"]
+EXPOSE 53
+COPY docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/etc/bind/named.conf"]
