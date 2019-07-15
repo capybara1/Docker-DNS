@@ -2,7 +2,7 @@
 
 set -e
 
-if [ $# -eq 1 -a "${1: -5}" = ".conf" ]
+if [ $# -eq 1 -a -e "$1" -a ! -x "$1" ]
 then
 	set -- /usr/sbin/named -f -u named -c "$@"
 fi
